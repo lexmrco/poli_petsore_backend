@@ -10,8 +10,6 @@ export default class CartRepositoryImpl implements CartRepository {
   private _carts: Cart[] = [];
 
   public addItemToCart(product: Product): Observable<void> {
-    console.log('cartRepository.ts -> addItemToCart ');
-
     this._carts.push({product});
     return of(1).pipe(
       // delay(1000),
@@ -22,9 +20,7 @@ export default class CartRepositoryImpl implements CartRepository {
   }
 
   public removeItemToCart(product: Product): Observable<void> {
-    
     const idx = this._carts.findIndex(c => c.product.id === product.id);
-    console.log(idx);
     this._carts.splice(idx, 1);
     return of(1).pipe(
       // delay(1000),

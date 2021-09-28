@@ -62,15 +62,12 @@ const bus = new Vue({});
   },
   methods: {
     addToCart: function () { 
-        console.log('add to cart 1');
          this.$emit('addToCart');
          this.$emit('showDetails',false);
-
      },
     removeToCart: function () { 
         this.$emit('removeToCart');
          this.$emit('showDetails',false);
-
      }
   }
 }

@@ -89,9 +89,6 @@ import { Product } from '../../domain/entity';
 
     removeToCart(product: Product) {
       this.loading = true;
-      console.log('Product -> removeToCart');
-      console.log(product);
-      console.log(this.cartStore.items);
 
       this.cartStore.removeProductToCart({product: product})
         .finally(() => {

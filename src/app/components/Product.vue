@@ -58,7 +58,6 @@
 
     @Emit()
     addToCart() {
-    console.log('Product -> addtoCart');
       this.loading = true;
       this.cartStore.addProductToCart({product: this.product})
         .finally(() => {

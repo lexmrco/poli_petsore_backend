@@ -45,8 +45,6 @@ export class CartStore extends VuexModule implements CartState {
 
   @Mutation
   addItem(cart: Cart) {
-    console.log('cart.ts -> addItem');
-  
     const idx = this.items.findIndex(c => c.product.id === cart.product.id);
     if (idx >= 0) {
       //this.items[idx].quantity += cart.quantity;
@@ -57,10 +55,8 @@ export class CartStore extends VuexModule implements CartState {
 
   @Mutation
   removeItem(cart: Cart) {
-    console.log('cart.ts -> removeItem');
     const idx = this.items.findIndex(c => c.product.id === cart.product.id);
     
-    console.log(this.items);
     if (idx >= 0) {
       this.items.splice(idx,1);
     } 
@@ -68,8 +64,6 @@ export class CartStore extends VuexModule implements CartState {
 
   @Action
   async addProductToCart({product}: AddProductToCartPayload) {
-    console.log('cart.ts -> addProductToCart');
-
     await this.addItemToCart.execute(product).toPromise();
     this.addItem({
       product: product
