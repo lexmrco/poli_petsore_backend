@@ -15,7 +15,8 @@
   import {Product} from "@/domain/entity";
   import {Component} from "vue-property-decorator";
   import {CartStore} from "@/app/store/cart";
-
+  import axios from 'axios'
+  import Services from '@/services/'
   @Component({
     components: {
       Product: ProductComponent
@@ -23,14 +24,21 @@
   })
   export default class ProductListComponent extends Vue {
     loading = false
-
+    products: Product[] = [];
     get productStore(): ProductStore {
       return getModule(ProductStore, this.$store)
     }
 
-    get products(): Product[] {
-      return this.productStore.items;
+    created() {
+      this.loadProducts()
     }
 
+    async loadProducts(){
+      await Services.productService.getItems().then(result => {
+        this.products = result.data.map((item: Product) => {
+          return { ...item, selected: false };
+        })
+      })
+    }
   }
 </script>
